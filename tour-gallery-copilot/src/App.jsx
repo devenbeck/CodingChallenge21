@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import TourCard from './components/TourCard';
 
 function App() {
-  // Fetch tours from https://course-api.com/react-tours-project using useEffect
-  // Store in state: tours, loading, error
   const [tours, setTours] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -29,6 +28,10 @@ function App() {
     fetchTours();
   }, []);
 
+  const removeTour = (id) => {
+    setTours(tours.filter((tour) => tour.id !== id));
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -40,11 +43,19 @@ function App() {
   return (
     <div>
       <h1>Tour Gallery</h1>
-      <ul>
+      <div className="tour-gallery">
         {tours.map((tour) => (
-          <li key={tour.id}>{tour.name}</li>
+          <TourCard
+            key={tour.id}
+            id={tour.id}
+            name={tour.name}
+            info={tour.info}
+            image={tour.image}
+            price={tour.price}
+            onRemove={removeTour}
+          />
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
