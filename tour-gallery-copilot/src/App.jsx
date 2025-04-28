@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import Gallery from './components/Gallery';                    //modify app.jsx to import and use 
-                                            //the gallery compontent instead of mapping over the tours array 
+import Gallery from './components/Gallery';
+
 function App() {
   const [tours, setTours] = useState([]);
   const [loading, setLoading] = useState(true);
