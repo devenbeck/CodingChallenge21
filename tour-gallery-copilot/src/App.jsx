@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import TourCard from './components/TourCard';
-
+import Gallery from './components/Gallery';                    //modify app.jsx to import and use 
+                                            //the gallery compontent instead of mapping over the tours array 
 function App() {
   const [tours, setTours] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -43,19 +43,7 @@ function App() {
   return (
     <div>
       <h1>Tour Gallery</h1>
-      <div className="tour-gallery">
-        {tours.map((tour) => (
-          <TourCard
-            key={tour.id}
-            id={tour.id}
-            name={tour.name}
-            info={tour.info}
-            image={tour.image}
-            price={tour.price}
-            onRemove={removeTour}
-          />
-        ))}
-      </div>
+      <Gallery tours={tours} onRemove={removeTour} />
     </div>
   );
 }
